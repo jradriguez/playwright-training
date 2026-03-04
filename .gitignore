@@ -7,3 +7,5 @@ npm-debug.log
 /blob-report/
 /playwright/.cache/
 .auth/
+# Local env (do not commit)
+.env
