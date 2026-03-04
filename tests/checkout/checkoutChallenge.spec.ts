@@ -5,13 +5,16 @@ test.describe("Checkout challenge", async () => {
   test.use({ storageState: ".auth/customer01.json" });
 
   test.beforeEach(async ({ page }) => {
-    await page.goto("https://practicesoftwaretesting.com");
+    await page.goto("/");
   });
 
-  test("buy now pay later", async ({ page, headless }) => {
+  test("buy now pay later", async ({ page, headless, isMobile }) => {
     await page.getByText("Claw Hammer with Shock Reduction Grip").click();
     await page.getByTestId("add-to-cart").click();
     await expect(page.getByTestId("cart-quantity")).toHaveText("1");
+    if (isMobile === true) {
+      await page.getByLabel("Toggle navigation").click();
+    }
     await page.getByTestId("nav-cart").click();
     await page.getByTestId("proceed-1").click();
     await page.getByTestId("proceed-2").click();

@@ -1,32 +1,42 @@
 import type { APIRequestContext, APIResponse } from '@playwright/test';
 
-export async function registerUser(
-    api: APIRequestContext,
-    apiUrl: string,
-    email: string, 
-    password: string
-): Promise<APIResponse> {
-//const apiUrl = process.env.API_URL;
-//const createRequestContext = await request.newContext();
-//const response = await createRequestContext.post(apiUrl + '/users/register', {
-return api.post(`${apiUrl}/users/register`, {  
-    data: {
-        first_name: "Todd",
-        last_name: "Dodd",
-        dob: "1995-10-01",
-        phone: "5555555555",
-        email,
-        password,
-        address: {
-        street: "123 Main street",
-        city: "Nashvillington",
-        state: "TN",
-        country: "US",
-        postal_code: "12345"
-        },
-    },
-});
+export type RegisterUserInput = {
+  apiUrl?: string;
+  email: string;
+  password: string;
+  firstName?: string;
+  lastName?: string;
+};
 
-//expect(response.status()).toBe(201);
-//return response.status();    
+export async function registerUser(
+  api: APIRequestContext,
+  {
+    apiUrl = process.env.API_URL ?? '',
+    email,
+    password,
+    firstName = 'Todd',
+    lastName = 'Dodd',
+  }: RegisterUserInput
+): Promise<APIResponse> {
+  if (!apiUrl) {
+    throw new Error('API_URL is missing (pass apiUrl or set process.env.API_URL)');
+  }
+
+  return api.post(`${apiUrl}/users/register`, {
+    data: {
+      first_name: firstName,
+      last_name: lastName,
+      dob: '1995-10-01',
+      phone: '5555555555',
+      email,
+      password,
+      address: {
+        street: '123 Main street',
+        city: 'Nashvillington',
+        state: 'TN',
+        country: 'US',
+        postal_code: '12345',
+      },
+    },
+  });
 }

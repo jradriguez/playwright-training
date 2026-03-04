@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Api challenge", () => {
   test("GET /products/{id}", async ({ request }) => {
-    const apiUrl = "https://api.practicesoftwaretesting.com";
+    const apiUrl = process.env.API_URL;
     const getProductResponse = await request.get(
       apiUrl + "/products/search?q=thor%20hammer"
     );

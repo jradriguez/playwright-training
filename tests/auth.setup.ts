@@ -6,12 +6,11 @@ setup("Create customer 01 auth", async ({ page, context }) => {
   const password = "welcome01";
   const customer01AuthFile = ".auth/customer01.json";
 
-  const loginPage = new LoginPage(page);
-  
-  await loginPage.goto();
+  await page.goto("https://practicesoftwaretesting.com/auth/login");
 
-  await loginPage.login(email, password);
-
+  await page.getByTestId("email").fill(email);
+  await page.getByTestId("password").fill(password);
+  await page.getByTestId("login-submit").click();
 
   await expect(page.getByTestId("nav-menu")).toContainText("Jane Doe");
   await context.storageState({ path: customer01AuthFile });

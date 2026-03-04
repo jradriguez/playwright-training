@@ -1,7 +1,6 @@
 import { LoginPage } from "@pages/login/login.page"
 import { test as baseTest } from "@playwright/test"
 
-
 type MyPages = {
     loginPage: LoginPage;
 };
@@ -11,3 +10,5 @@ export const test = baseTest.extend<MyPages>({
         await use(new LoginPage(page));
     },
 });
+
+export { expect } from "@playwright/test";
