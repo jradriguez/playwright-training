@@ -1,9 +1,7 @@
-export {};
+import type {} from "@playwright/test";
 
-declare global {
-  namespace PlaywrightTest {
+declare module "@playwright/test" {
     interface Matchers<R> {
-      toBeNumber(): R;
+        toBeNumber(): R;
     }
-  }
 }

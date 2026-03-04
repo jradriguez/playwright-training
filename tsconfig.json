@@ -4,8 +4,16 @@
     "paths": {
       "@datafactory/*": ["lib/datafactory/*"],
       "@helpers/*": ["lib/helpers/*"],
-      "@fixtures/*": ["lib/fixtures/*"],
-      "@pages/*": ["lib/pages/*"]
-    }
-  }
+      "@pages/*": ["lib/pages/*"],
+      "@fixtures/*": ["lib/fixtures/*"]
+    },
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "types": ["node"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["global.d.ts", "playwright.config.ts", "lib", "tests/**/*.ts"]
 }

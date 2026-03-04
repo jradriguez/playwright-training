@@ -119,3 +119,22 @@ expect.extend({
     }
   },
 });
+
+expect.extend({
+  toBeNumber(received: number) {
+    const check = typeof received == "number";
+
+    if (check) {
+      return {
+        message: () => "passed",
+        pass: true,
+      };
+    } else {
+      return {
+        message: () =>
+          `toBeNumber() assertion failed. \nYou expected '${received}' to be a number but it's a ${typeof received}\n`,
+        pass: false,
+      };
+    }
+  }
+})

@@ -1,4 +1,4 @@
-import { type Locator, type Page } from "@playwright/test";
+import { type Locator, type Page } from '@playwright/test';
 
 export class LoginPage {
   readonly page: Page;
@@ -12,13 +12,13 @@ export class LoginPage {
     this.loginButton = page.getByTestId("login-submit");
   }
 
-  async goto() {
-    await this.page.goto("/auth/login");
-  }
-
+  async goto() { 
+    await this.page.goto("https://practicesoftwaretesting.com/auth/login");
+}
   async login(email: string, password: string) {
+    await this.goto();
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
-  }
+}
 }

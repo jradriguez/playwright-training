@@ -1,26 +1,42 @@
-import { request, expect } from "@playwright/test";
+import type { APIRequestContext, APIResponse } from '@playwright/test';
 
-export async function registerUser(email: string, password: string) {
-  const apiUrl = process.env.API_URL;
-  const createRequestContext = await request.newContext();
-  const response = await createRequestContext.post(apiUrl + "/users/register", {
+export type RegisterUserInput = {
+  apiUrl?: string;
+  email: string;
+  password: string;
+  firstName?: string;
+  lastName?: string;
+};
+
+export async function registerUser(
+  api: APIRequestContext,
+  {
+    apiUrl = process.env.API_URL ?? '',
+    email,
+    password,
+    firstName = 'Todd',
+    lastName = 'Dodd',
+  }: RegisterUserInput
+): Promise<APIResponse> {
+  if (!apiUrl) {
+    throw new Error('API_URL is missing (pass apiUrl or set process.env.API_URL)');
+  }
+
+  return api.post(`${apiUrl}/users/register`, {
     data: {
-      first_name: "Test",
-      last_name: "User",
-      dob: "2001-01-01",
-      phone: "5555555555",
-      email: email,
-      password: password,
+      first_name: firstName,
+      last_name: lastName,
+      dob: '1995-10-01',
+      phone: '5555555555',
+      email,
+      password,
       address: {
-        street: "101 Testing Way",
-        city: "New York",
-        state: "New York",
-        country: "US",
-        postal_code: "55555",
+        street: '123 Main street',
+        city: 'Nashvillington',
+        state: 'TN',
+        country: 'US',
+        postal_code: '12345',
       },
     },
   });
-
-  expect(response.status()).toBe(201);
-  return response.status();
 }
