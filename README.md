@@ -14,7 +14,7 @@ Learning objectives
 
 ## Instructions & Purpose
 
-This repository has a dev branch where the work is committed in this course. You may fork this repository into your own personal repo for training or access the LinkedIn Learning link for this course below.
+This repository has a dev branch where the work is committed in this course. You may clone this repository and migrate it into your own personal repo for training or access the LinkedIn Learning link for this course below.
 
 **This repository has been used for training purposes in using playwright, VScode, and Git** 
 
