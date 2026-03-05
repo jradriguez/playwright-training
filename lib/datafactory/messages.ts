@@ -9,7 +9,7 @@ export async function createMessage(
 ) {
   const storageData = JSON.parse(fs.readFileSync(authFilePath, "utf8"));
   const token = storageData.origins[0].localStorage.find(
-    (item) => item.name === "auth-token"
+    (item: any) => item.name === "auth-token"
   ).value;
 
   const apiUrl = process.env.API_URL;

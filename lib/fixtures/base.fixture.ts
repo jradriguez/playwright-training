@@ -1,13 +1,14 @@
-import { mergeExpects, mergeTests } from "@playwright/test";
-import {
+import { mergeExpects, mergeTests } from "playwright/test";
+import { 
   test as pageTest,
   expect as pageExpect,
-} from "@fixtures/pages.fixture";
+} from "@fixtures/pages.fixtures"; 
+
 
 import {
   test as consoleTest,
   expect as consoleExpect,
-} from "@fixtures/console.fixture";
+} from "@fixtures/console.fixture";  
 
 export const test = mergeTests(pageTest, consoleTest);
 export const expect = mergeExpects(pageExpect, consoleExpect);
